@@ -13,21 +13,18 @@ Clone Docker env from GIT
 Open "firio-docker-env" folder
 - cd firio-docker-env
 
-Clone ContentArena from GIT
-- git clone git@github.com:fitchmario/videocourses.git
+Clone Project from GIT
+- git clone git@github.com:FirioSolutions/{projectName}.git
 
 == DATABASE
 Change "docker-compose.yml" params according to app requests
 - "MYSQL_ROOT_PASSWORD"={firio-db-root-password}
 - "MYSQL_DATABASE"={firio-db-name} # set: app
 
-Creating database with data
-- Download file https://drive.google.com/file/d/1MsRCtm1CFg2ULqxWxXhZUPzut0WsUNFu/view?usp=sharing and extract data to "./ca-docker-env/data/mysql"
-
 Change .env params
 DATABASE_HOST=mysql
 DATABASE_PORT=3306
-DATABASE_NAME=app
+DATABASE_NAME={dbName}
 DATABASE_USER=root
 DATABASE_PASSWORD={firio-db-root-password}
 
