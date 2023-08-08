@@ -1,0 +1,37 @@
+services:
+  
+  nginx:
+    image: nginx:latest
+    hostname: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./logs/nginx:/var/log/nginx
+      - ./projects/videocourses:/var/www/html/videocourses
+  
+  php:
+    build: ./docker-files/php
+    hostname: php
+    volumes:
+      - ./projects/videocourses:/var/www/html/videocourses
+    environment:
+      - SYMFONY_ENV=dev
+  
+  mysql:
+    image: mysql:latest
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=app
+    volumes:
+      - ./mysql:/var/lib/mysql
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    hostname: phpmyadmin
+    environment:
+      - VIRTUAL_HOST=pma
+      - PMA_HOSTS=mysql
+    ports:
+      - 88:80
